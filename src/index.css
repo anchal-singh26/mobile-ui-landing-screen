@@ -1,0 +1,296 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f4f4f4;
+  font-family: 'Inter', sans-serif;
+}
+
+.app-bg {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* -------- MOBILE SHELL -------- */
+.mobile-shell {
+  width: 360px; /* standard mobile width */
+  max-width: 100%; /* responsive */
+  height: 670px;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+  display: flex;
+  flex-direction: column;
+  background: #f4f4f4;
+  overflow: hidden;
+}
+
+/* -------- SCREENS -------- */
+.screen {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 0 4px; /* inner padding */
+}
+
+.screen h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 6px;
+}
+
+.screen h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.screen p {
+  font-size: 13px;
+  color: #777;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+/* -------- FORMS -------- */
+label {
+  font-size: 12px;
+  font-weight: 500;
+  color: #6c25ff;
+  margin-bottom: 4px;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #dcdcdc;
+  font-size: 14px;
+  margin-bottom: 16px;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+input:focus {
+  border-color: #6c25ff;
+  box-shadow: 0 0 4px rgba(108,37,255,0.3);
+}
+
+/* -------- BUTTONS -------- */
+.primary {
+  background: #6c25ff;
+  color: white;
+  padding: 14px;
+  border-radius: 10px;
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.secondary {
+  background: #d8c7ff;
+  color: black;
+  padding: 14px;
+  border-radius: 10px;
+  border: none;
+  font-size: 15px;
+  font-weight: 500;
+  margin-top: 12px;
+  cursor: pointer;
+}
+
+.disabled {
+  background: #ccc;
+  padding: 14px;
+  border-radius: 10px;
+  border: none;
+  font-size: 15px;
+}
+
+/* -------- LANDING FIX -------- */
+.landing {
+  justify-content: flex-end;
+  padding-bottom: 30px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+/* -------- PROFILE -------- */
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.profile img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.bio {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.6;
+  margin-top: 10px;
+}
+
+.signup h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+.error {
+  font-size: 12px;
+  color: #dd4a48;
+  margin-top: 4px;
+}
+
+.error-input {
+  border-color: #dd4a48 !important;
+}
+
+/* -------- FORM SCROLL -------- */
+.form {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.field {
+  position: relative;
+  margin-bottom: 28px; /* reserve space → NO layout shift */
+}
+
+.input-error {
+  border: 2px solid #dd4a48 !important;
+}
+
+/* Tooltip popup */
+.tooltip-error {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 6px;
+  background: #2b2b2b;
+  color: #fff;
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+  z-index: 10;
+}
+
+.tooltip-error::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 12px;
+  border-width: 6px;
+  border-style: solid;
+  border-color: transparent transparent #2b2b2b transparent;
+}
+
+.field label {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  color: #6c25ff;
+  margin-bottom: 6px;
+}
+
+.required {
+  color: #dd4a48;
+  margin-left: 2px;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  outline: none;
+}
+
+.field input {
+  width: 100%;
+  padding: 11px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
+/* -------- AGENCY RADIO -------- */
+.agency {
+  margin-top: 6px;
+}
+
+.agency p {
+  font-size: 12px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.radio {
+  display: flex;
+  gap: 20px;
+}
+
+.radio label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+}
+
+/* -------- SIGNUP SCREEN -------- */
+.screen.signup {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.bottom-btn {
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  margin-top: 16px;
+}
+
+/* -------- RESPONSIVE ADJUSTMENTS -------- */
+@media (max-width: 400px) {
+  .mobile-shell {
+    width: 100%;
+    height: auto;
+    padding: 16px;
+  }
+  .screen h2 {
+    font-size: 18px;
+  }
+  .screen h3 {
+    font-size: 16px;
+  }
+  input {
+    font-size: 13px;
+    padding: 10px;
+  }
+  .primary, .secondary, .disabled {
+    font-size: 14px;
+    padding: 12px;
+  }
+  .profile img {
+    width: 50px;
+    height: 50px;
+  }
+}
