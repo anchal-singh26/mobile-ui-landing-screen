@@ -19,13 +19,15 @@ export default function Signup() {
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
-    setErrors({ ...errors, [e.target.name]: "" });
+    setErrors({ ...errors, [e.target.name]: "" }); 
   };
 
   const validate = () => {
     const newErrors = {};
 
-    if (!form.name.trim()) newErrors.name = "*Full name is required";
+    if (!form.name.trim()) {
+      newErrors.name = "*Full name is required";
+    }
 
     if (!form.phone.trim()) {
       newErrors.phone = "*Phone number is required";
@@ -50,34 +52,34 @@ export default function Signup() {
 
   const submit = () => {
     const validationErrors = validate();
+
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
     }
 
-    const users = JSON.parse(localStorage.getItem("users")) || [];
-
-    // check duplicate email
-    const emailExists = users.find(u => u.email === form.email);
-    if (emailExists) {
-      setErrors({ email: "Email already registered" });
-      return;
-    }
-
     const newUser = {
       name: form.name,
-      phone: form.phone,
       email: form.email,
-      password: form.password,
+      phone: form.phone,
       company: form.company,
       agency: form.agency,
+      password: form.password, // Save password for login check
     };
 
+    // Save user in localStorage
+    const users = JSON.parse(localStorage.getItem("users")) || [];
     users.push(newUser);
     localStorage.setItem("users", JSON.stringify(users));
-    localStorage.setItem("currentUser", JSON.stringify(newUser));
 
-    setUser(newUser);
+    setUser({
+      name: form.name,
+      email: form.email,
+      phone: form.phone,
+      company: form.company,
+      agency: form.agency,
+    });
+
     navigate("/profile");
   };
 
@@ -88,43 +90,84 @@ export default function Signup() {
       <div className="form">
         <div className="field">
           <label>Full Name <span className="required">*</span></label>
-          <input name="name" value={form.name} onChange={handleChange} />
+          <input
+            name="name"
+            value={form.name}
+            placeholder="Enter full name"
+            onChange={handleChange}
+          />
           {errors.name && <span className="error">{errors.name}</span>}
         </div>
 
         <div className="field">
           <label>Phone number <span className="required">*</span></label>
-          <input name="phone" value={form.phone} onChange={handleChange} />
+          <input
+            type="tel"
+            name="phone"
+            value={form.phone}
+            placeholder="Enter phone number"
+            onChange={handleChange}
+          />
           {errors.phone && <span className="error">{errors.phone}</span>}
         </div>
 
         <div className="field">
-          <label>Email address <span className="required">*</span></label>
-          <input name="email" value={form.email} onChange={handleChange} />
+          <label> Email address<span className="required">*</span></label>
+          <input
+            type="email"
+            name="email"
+            value={form.email}
+            placeholder="Enter email address"
+            onChange={handleChange}
+          />
           {errors.email && <span className="error">{errors.email}</span>}
         </div>
 
         <div className="field">
           <label>Password <span className="required">*</span></label>
-          <input type="password" name="password" value={form.password} onChange={handleChange} />
-          {errors.password && <span className="error">{errors.password}</span>}
+          <input
+            type="password"
+            name="password"
+            value={form.password}
+            placeholder="Enter password"
+            onChange={handleChange}
+          />
+          {errors.password && (
+            <span className="error">{errors.password}</span>
+          )}
         </div>
 
         <div className="field">
-          <label>Company name</label>
-          <input name="company" value={form.company} onChange={handleChange} />
+          <label>Company name </label>
+          <input
+            name="company"
+            value={form.company}
+            placeholder="Enter company name"
+            onChange={handleChange}
+          />
         </div>
 
         <div className="agency">
           <p>Are you an Agency?*</p>
-          <label>
-            <input type="radio" checked={form.agency === "yes"} onChange={() => setForm({ ...form, agency: "yes" })} />
-            Yes
-          </label>
-          <label>
-            <input type="radio" checked={form.agency === "no"} onChange={() => setForm({ ...form, agency: "no" })} />
-            No
-          </label>
+          <div className="radio">
+            <label>
+              <input
+                type="radio"
+                checked={form.agency === "yes"}
+                onChange={() => setForm({ ...form, agency: "yes" })}
+              />
+              Yes
+            </label>
+
+            <label>
+              <input
+                type="radio"
+                checked={form.agency === "no"}
+                onChange={() => setForm({ ...form, agency: "no" })}
+              />
+              No
+            </label>
+          </div>
         </div>
       </div>
 
